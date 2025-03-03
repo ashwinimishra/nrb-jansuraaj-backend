@@ -33,6 +33,6 @@ let pool;
 
     // start the server
     app.listen(port, () => {
-        console.log(`Example app listening on port http://127.0.0.1:${port}`);
+        console.log(`Example app listening on port http://0.0.0.0:${port}`);
     });
 })();
