@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 router.post("/", async (req, res) => {
     console.log(req.body);
     const { id, fullName, phoneNumber, email, biharDistrict, referredBy, profileUrl, createdAt, status, points,
-        countryCode, isRegistered, isMember, currentCountry, currentState } = req.body;
+        countryCode, isRegistered, isMember, currentCountry, currentState, pincode } = req.body;
 
     // check if name or email is missing or empty
     // if (!name || !email || name === '' || email === '') {
@@ -34,8 +34,8 @@ router.post("/", async (req, res) => {
 
         // create the new user
         const [insertResults] = await req.pool.query(`INSERT INTO ${process.env.DB_TABLENAME} (id, full_name, phone_number, email, bihar_district, referred_by, profile_url, created_at, status, points,
-            country_code, is_registered, is_member, current_country, current_state) VALUES (?, ?,?, ?,?, ?,?, ?,?, ?,?, ?,?, ?,?)`, [id, fullName, phoneNumber, email, biharDistrict, referredBy, profileUrl, createdAt, status, points,
-            countryCode, isRegistered, isMember, currentCountry, currentState]);
+            country_code, is_registered, is_member, current_country, current_state,pincode) VALUES (?, ?,?, ?,?, ?,?, ?,?, ?,?, ?,?, ?,?,?)`, [id, fullName, phoneNumber, email, biharDistrict, referredBy, profileUrl, createdAt, status, points,
+            countryCode, isRegistered, isMember, currentCountry, currentState, pincode]);
 
         // send a success response
         res.status(201).json({ id: insertResults.insertId, fullName, phoneNumber, email });
